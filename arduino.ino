@@ -24,7 +24,7 @@ const int list1[26][4] = {{0,1,-1,-1},
                      {1,0,0,1},
                      {1,0,1,1}};
 const char list2[26] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
-const char s[20] = {'H','E','L','L','O','#'};
+const char s[20] = "Hello!";
 
 void output(int i)
 {
@@ -46,15 +46,26 @@ void output(int i)
 void setup() {
   // put your setup code here, to run once:
   pinMode(13,OUTPUT);
+  digitalWrite(13,LOW);
+  delay(50);
+  for(int j = 0; j <= 3; j++){
+    digitalWrite(13,HIGH);
+    delay(50);
+    digitalWrite(13,LOW);
+    delay(50);
+  }
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
   int i = 0;
-  while(s[i] != '#'){
+  while(s[i] != '!'){
     for(int j = 0; j < 26; j++){
       if(s[i] == list2[j]){
         output(j);       
+      }
+      else if(s[i] == list2[j] + 32){
+        output(j); 
       }
     }
     i++;
